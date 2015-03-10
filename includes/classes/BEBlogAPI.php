@@ -4,10 +4,10 @@
  * @package BlogEngine
  */
 
-$config = parse_ini_file("config.ini");
+$config = parse_ini_file(dirname(__FILE__) . '/../../config.ini');
 
-include_once 'includes/classes/BEDatabase.php';
-include_once 'includes/classes/BEUser.php';
+include_once dirname(__FILE__) . '/BEDatabase.php';
+include_once dirname(__FILE__) .'/BEUser.php';
 
 class BEBlogAPI {
 
@@ -17,7 +17,7 @@ class BEBlogAPI {
     public function __construct(){
         global $config;
         if($config['DONE_SETUP'] != 1) {
-            include_once '././install/install_helper.php';
+            include_once dirname(__FILE__) . '/../../install/install_helper.php';
             create_main_tables();
             $this->add_group('unregistered', true, false, false, false, false, false);
             $this->add_group('registered', true, false, false, false, true, false);

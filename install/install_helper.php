@@ -69,7 +69,7 @@ function create_table($query, $name) {
 }
 
 function update_setup_config(){
-    $f = fopen( "./config.ini", "w" );
+    $f = fopen( dirname(__FILE__) . '/../../config.ini', "w" );
     global $config;
     foreach ( $config as $name => $value )
     {

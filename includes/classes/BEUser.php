@@ -263,7 +263,7 @@ class User {
     public function has_permission($user_id, $permission) {
         $group_id = $this->get_group($user_id);
 
-        $this->db->query('SELECT '. $permission .' FROM '. BEUSERSTABLE .' WHERE group_id = :group_id');
+        $this->db->query('SELECT '. $permission .' FROM '. BEGROUPTABLE .' WHERE group_id = :group_id');
         $this->db->bind(':group_id', $group_id);
         $this->db->execute();
         $row = $this->db->single();
