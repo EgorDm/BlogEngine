@@ -102,4 +102,20 @@ class BEBlogAPI {
         $db->execute();
     }
 
+    public function edit_post($post_id,$post_title, $post_desc, $post_cont, $post_owner) {
+        $db = BEDatabase::get_instance();
+
+
+        $db->query('UPDATE '. BEPOSTSTABLE .' SET '.
+            'post_title = :post_title, post_desc = :post_desc, post_cont = :post_cont, post_owner = :post_owner'
+            .' WHERE post_id = :post_id') ;
+
+        $db->bind(':post_title', $post_title);
+        $db->bind(':post_desc', $post_desc);
+        $db->bind(':post_cont', $post_cont);
+        $db->bind(':post_owner', $post_owner);
+        $db->bind(':post_id', $post_id);
+        $db->execute();
+    }
+
 } 
