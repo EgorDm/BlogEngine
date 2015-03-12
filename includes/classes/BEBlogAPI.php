@@ -142,6 +142,7 @@ class BEBlogAPI
     {
         $this->db->query('SELECT * FROM ' . BEPOSTSTABLE . ' WHERE post_id = :post_id');
         $this->db->bind(':post_id', $post_id);
+        $this->db->execute();
         if ($this->db->rowCount() < 1) {
             return false;
         }

@@ -320,7 +320,7 @@ class User
         $row = $this->db->single();
 
         if ($this->db->rowCount() > 0) {
-            return (bool)$row[$permission];
+            return (boolean)$row[$permission];
         }
         return false;
     }
@@ -335,7 +335,6 @@ class User
     {
         $this->db->query('SELECT user_group FROM ' . BEUSERSTABLE . ' WHERE user_id = :user_id');
         $this->db->bind(':user_id', $user_id);
-        $this->db->execute();
         $row = $this->db->single();
 
         if ($this->db->rowCount() > 0) {
