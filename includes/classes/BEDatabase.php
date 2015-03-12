@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package BlogEngine
  * @author Egor Dmitriev <egordmitriev2@gmail.com>
@@ -6,7 +7,6 @@
  * @copyright 2015 Egor Dmitriev
  * @license Licensed under MIT https://github.com/EgorDm/BlogEngine/blob/master/LICENSE.md
  */
-
 class BEDatabase
 {
 
@@ -123,16 +123,6 @@ class BEDatabase
     }
 
     /**
-     * Executes a prepared statement.
-     *
-     * @return bool result, on success true on failure false
-     */
-    public function execute()
-    {
-        return $this->stmt->execute();
-    }
-
-    /**
      * Executes prepared statement and returns an array containing all of the result set rows.
      *
      * @return array containing all of the remaining rows in the result set
@@ -141,6 +131,16 @@ class BEDatabase
     {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Executes a prepared statement.
+     *
+     * @return bool result, on success true on failure false
+     */
+    public function execute()
+    {
+        return $this->stmt->execute();
     }
 
     /**

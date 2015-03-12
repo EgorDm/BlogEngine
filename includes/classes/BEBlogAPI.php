@@ -102,7 +102,7 @@ class BEBlogAPI
         $this->db->bind(':perm_comment', intval($perm_comment));
         $this->db->bind(':perm_useredit', intval($perm_useredit));
 
-        if(!$this->db->execute()) {
+        if (!$this->db->execute()) {
             return false;
         }
 
@@ -142,7 +142,7 @@ class BEBlogAPI
     {
         $this->db->query('SELECT * FROM ' . BEPOSTSTABLE . ' WHERE post_id = :post_id');
         $this->db->bind(':post_id', $post_id);
-        if($this->db->rowCount() < 1) {
+        if ($this->db->rowCount() < 1) {
             return false;
         }
 

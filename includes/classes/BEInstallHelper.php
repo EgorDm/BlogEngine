@@ -48,7 +48,8 @@ function create_main_tables()
 
     if (create_table($create_postsdb, 'posts') &&
         create_table($create_userdb, 'users') &&
-        create_table($create_groupdb, 'groups')) {
+        create_table($create_groupdb, 'groups')
+    ) {
 
         global $config;
 

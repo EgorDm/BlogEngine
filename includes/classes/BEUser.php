@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package BlogEngine
  * @author Egor Dmitriev <egordmitriev2@gmail.com>
@@ -6,7 +7,6 @@
  * @copyright 2015 Egor Dmitriev
  * @license Licensed under MIT https://github.com/EgorDm/BlogEngine/blob/master/LICENSE.md
  */
-
 class User
 {
 
@@ -115,6 +115,21 @@ class User
     }
 
     /**
+     * Get user's ID by its username.
+     *
+     * @param string $username username of the user you want to get ID of
+     * @return string|bool user ID on success and false on failure
+     */
+    public function get_userid($username)
+    {
+        $this->db->query('SELECT user_id FROM ' . BEUSERSTABLE . ' WHERE username = :username');
+        $this->db->bind(':username', $username);
+        $row = $this->db->single();
+
+        return $row['user_id'];
+    }
+
+    /**
      * Logout user currently the session is of.
      *
      * @return void
@@ -186,21 +201,6 @@ class User
     }
 
     /**
-     * Get user's ID by its username.
-     *
-     * @param string $username username of the user you want to get ID of
-     * @return string|bool user ID on success and false on failure
-     */
-    public function get_userid($username)
-    {
-        $this->db->query('SELECT user_id FROM ' . BEUSERSTABLE . ' WHERE username = :username');
-        $this->db->bind(':username', $username);
-        $row = $this->db->single();
-
-        return $row['user_id'];
-    }
-
-    /**
      * Get user's username by its ID.
      *
      * @param int $user_id user's ID you want to get username of
@@ -228,26 +228,6 @@ class User
         $row = $this->db->single();
 
         return $row['user_email'];
-    }
-
-    /**
-     * Get user's group ID by its ID.
-     *
-     * @param $user_id user's ID you want to get group ID of
-     * @return int|bool group ID on success and false on failure
-     */
-    public function get_group($user_id)
-    {
-        $this->db->query('SELECT user_group FROM ' . BEUSERSTABLE . ' WHERE user_id = :user_id');
-        $this->db->bind(':user_id', $user_id);
-        $this->db->execute();
-        $row = $this->db->single();
-
-        if ($this->db->rowCount() > 0) {
-
-            return $row['user_group'];
-        }
-        return false;
     }
 
     /**
@@ -341,6 +321,26 @@ class User
 
         if ($this->db->rowCount() > 0) {
             return (bool)$row[$permission];
+        }
+        return false;
+    }
+
+    /**
+     * Get user's group ID by its ID.
+     *
+     * @param $user_id user's ID you want to get group ID of
+     * @return int|bool group ID on success and false on failure
+     */
+    public function get_group($user_id)
+    {
+        $this->db->query('SELECT user_group FROM ' . BEUSERSTABLE . ' WHERE user_id = :user_id');
+        $this->db->bind(':user_id', $user_id);
+        $this->db->execute();
+        $row = $this->db->single();
+
+        if ($this->db->rowCount() > 0) {
+
+            return $row['user_group'];
         }
         return false;
     }
