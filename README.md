@@ -20,7 +20,7 @@ config.ini
 
 Open config.ini with a text editing program and fill in your database settings.
 
-Add this at the top of every page you wnat to use BlogEngine:
+Add this at the top of every page you want to use BlogEngine:
 ```bash
 <?php
 include_once 'BlogEngine/BEInit.php';
